@@ -1,0 +1,19 @@
+@import "../../../main-styles.scss";
+
+h1 {
+  font-size: 150px;
+  text-align: center;
+  line-height: 0.9;
+  color: $dark;
+
+  span {
+    color: $purple-light;
+  }
+}
+
+h2 {
+  font-size: 50px;
+  text-align: center;
+  line-height: 0.9;
+  color: $purple-light;
+}

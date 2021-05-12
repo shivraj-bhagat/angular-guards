@@ -1,0 +1,20 @@
+.is-text-brand {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+
+.is-text-logo {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .is-text-brand {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }    
+}

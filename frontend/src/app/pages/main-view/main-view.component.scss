@@ -1,0 +1,15 @@
+@import '../../../main-styles.scss';
+
+.main-view {
+    color: $dark;
+
+    p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    ol {
+        font-size: 18px;
+        padding: 10px 30px;
+    }
+} 
