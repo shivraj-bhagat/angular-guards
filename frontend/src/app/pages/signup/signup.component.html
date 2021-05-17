@@ -1,0 +1,83 @@
+<div class="centered-content">
+	<div class="white-box">
+		<h1 class="title has-text-primary">Sign up</h1>
+		<form [formGroup]="signupForm" (ngSubmit)="onSignUpFormSubmit()">
+			<div class="field">
+				<p class="control has-icons-left has-icons-right">
+					<input formControlName="name" name="name" class="input has-background-light" type="text"
+						placeholder="Your Name" minlength="3">
+					<span class="icon is-small is-left">
+						<i class="fas fa-user-alt"></i>
+					</span>
+				</p>
+			</div>
+
+			<div
+				*ngIf="signupForm.controls.name.invalid && (signupForm.controls.name.dirty || signupForm.controls.name.touched)"
+				class="is-dark" style="padding: 0 0 10px;">
+				<p *ngIf="signupForm.controls.name.errors.required">
+					Name is required.
+				</p>
+				<p *ngIf="signupForm.controls.name.errors.minlength">
+					Name must be at least 3 characters long.
+				</p>
+			</div>
+
+			<div class="field">
+				<p class="control has-icons-left has-icons-right">
+					<input formControlName="email" name="email" class="input has-background-light" type="email"
+						placeholder="Your Email">
+					<span class="icon is-small is-left">
+						<i class="fas fa-envelope"></i>
+					</span>
+				</p>
+			</div>
+
+			<div
+				*ngIf="signupForm.controls.email.invalid && (signupForm.controls.email.dirty || signupForm.controls.email.touched)"
+				class="is-dark" style="padding: 0 0 10px;">
+				<p *ngIf="signupForm.controls.email.errors.required">
+					Email is required.
+				</p>
+				<p *ngIf="signupForm.controls.email.errors.email">
+					Please check email address.
+				</p>
+			</div>
+
+			<div class="field">
+				<p class="control has-icons-left">
+					<input formControlName="password" name="password" class="input has-background-light" type="password"
+						placeholder="Your Password" minlength="8">
+					<span class="icon is-small is-left">
+						<i class="fas fa-lock"></i>
+					</span>
+				</p>
+			</div>
+
+			<div
+				*ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)"
+				class="is-dark" style="padding: 0 0 10px;">
+				<p *ngIf="signupForm.controls.password.errors.required">
+					Password is required.
+				</p>
+				<p *ngIf="signupForm.controls.password.errors.minlength">
+					Password must be at least 8 char long.
+				</p>
+			</div>
+
+			<div class="field" style="display: flex; justify-content: flex-end;">
+				<p class="control">
+					<button class="button is-primary has-text-white" [disabled]="!signupForm.valid">
+						Sign up
+					</button>
+				</p>
+			</div>
+		</form>
+
+		<div class="error-text" *ngIf="error">
+			<p>{{error?.error.err}}</p>
+		</div>
+
+		<p class="has-text-grey" style="margin-top: 15px;">Already got an account? <a routerLink="/login">Login</a> now!</p>
+	</div>
+</div>

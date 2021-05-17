@@ -34,17 +34,9 @@ $input-shadow: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-height: 90%;
-  height: 70%;
-  position: relative;
-  top: 50px;
-}
-
-.model-box {
-  min-height: 200px;
-  width: 100%;
-  max-width: 50%;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .title {
@@ -58,4 +50,17 @@ $input-shadow: none;
   padding: 35px;
   background: white;
   border-radius: 5px;
+}
+
+.error-text {
+  color: rgb(255, 23, 33);
+  text-align: center;
+  margin: 15px 0 0;
+  text-transform: lowercase;
+  font-size: 16px;
+  transition: all 0.2s ease;
+
+  p:first-letter {
+      text-transform: uppercase;
+  }
 }

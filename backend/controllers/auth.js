@@ -3,7 +3,6 @@ const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
-
 exports.signup = (req,res) => {
     const errors = validationResult(req);
 
@@ -22,10 +21,22 @@ exports.signup = (req,res) => {
                     err: "Not able to save user in db"
                 })
             }
+
+
+            const oneDayToSeconds = 24 * 60 * 60 * 1000;
+            const token = jwt.sign({_id: user._id}, process.env.SECERT, { expiresIn: oneDayToSeconds });
+
+            // res.cookie("token", token, { 
+            //     maxAge: oneDayToSeconds
+            // });
+
             res.json({
-                name: user.name,
-                email: user.email,
-                id: user._id
+                token,
+                user : {
+                    name: user.name,
+                    email: user.email,
+                    _id: user._id
+                }
             })
         })
     } catch(err) {
@@ -33,7 +44,7 @@ exports.signup = (req,res) => {
             message: err.message
         })
     }
-}
+};
 
 exports.signin = (req,res) => {
     const { email, password } = req.body;
@@ -58,10 +69,13 @@ exports.signin = (req,res) => {
                     err: "Email and password do not match"
                 })
             }
+            
+            const oneDayToSeconds = 24 * 60 * 60 * 1000;
+            const token = jwt.sign({_id: user._id}, process.env.SECERT, { expiresIn: oneDayToSeconds });
 
-            const token = jwt.sign({_id: user._id}, process.env.SECERT);
-
-            res.cookie("token", token, {expire: new Date() + 9999});
+            // res.cookie("token", token, { 
+            //     maxAge: oneDayToSeconds
+            // });
 
             const { _id, name, email } = user;
             return res.json({
@@ -74,21 +88,21 @@ exports.signin = (req,res) => {
             message: err.message
         })
     }
-}
+};
 
 exports.signout = (req,res) => {
     res.clearCookie("token");
     res.json({
         message: "User signout successfully"
     });
-}
+};
 
 // protected routes
 exports.isSignedIn = expressJwt({
     secret: process.env.SECERT,
     algorithms: ['HS256'],
     userProperty: "auth"
-})
+});
 
 // custom middlewares
 exports.isAuthenticated = (req,res,next) => {
@@ -99,4 +113,4 @@ exports.isAuthenticated = (req,res,next) => {
         });
     }
     next();
-}
+};

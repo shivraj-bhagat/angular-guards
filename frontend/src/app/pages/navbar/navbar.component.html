@@ -1,13 +1,24 @@
-<nav class="navbar is-primary is-text-brand" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a routerLink="" class="navbar-item is-text-logo">
-        Angular Guard Demo
-      </a>
-  
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
+<nav class="navbar is-primary is-text-brand">
+  <div class="navbar-brand">
+    <a routerLink="" class="navbar-item is-text-logo">
+      Angular Guard Demo
+    </a>
+    <!-- <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div> -->
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-end" *ngIf="isLoggedIn" (click)="onclickLogout()">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light">
+            Logout
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
 </nav>

@@ -36,9 +36,13 @@ app.get("/", (req,res) => {
 
 // routes import
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const forgotPasswordRoutes = require("./routes/forgot-password");
 
 // router use
 app.use("/api", authRoutes)
+app.use("/api", userRoutes)
+app.use("/api", forgotPasswordRoutes)
 
 // server initiate
 app.listen(port, (err) => {
