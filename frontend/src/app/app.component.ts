@@ -8,7 +8,6 @@ import { AuthService } from './services/auth.service';
 })
 
 export class AppComponent {
-  title = 'Angular Guard';
 
   constructor(private authService: AuthService) {
     if(!this.authService.isAuthenticated()) {
